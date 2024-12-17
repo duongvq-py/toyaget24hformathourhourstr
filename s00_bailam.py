@@ -5,7 +5,7 @@ get_24hformat_hour(hour_str)
 
 --- nopbai
 00 fork github repo tu bainopmau tu nguon duoiday
-   https://github.com/namgivu/toyaget24hformathourhourstr
+   https://github.com/duongvq-py/toyaget24hformathourhourstr/edit/main/s00_bailam.py
 
 01 lam bai vao tep s00_bailam.py, chay Run de co ketqua tatca la 1
 02a mo github web, mo kiemtra tep s00_bailam.py, va lay diachi/url aka githubrepourl
@@ -42,5 +42,27 @@ get_24hformat_hour('11 PM')            | 23                     | 12
 
 #region bailam
 def get_24hformat_hour(hour_str):
-  return 'todo'
+  thoigian, sangtoi = hour_str.split()
+  gio = int(thoigian.split(':')[0])
+  if sangtoi.upper() == 'PM' and gio != 12: 
+      gio += 12
+  elif sangtoi.upper() == 'AM' and gio == 12: 
+      gio = 0
+  return gio
+
+print(get_24hformat_hour('6am'))
+print(get_24hformat_hour('6am')) 
+print(get_24hformat_hour('7 am'))
+print(get_24hformat_hour('8AM') )
+print(get_24hformat_hour('9 AM'))  
+
+print(get_24hformat_hour('6pm')) 
+print(get_24hformat_hour('7 pm'))
+print(get_24hformat_hour('8PM')) 
+print(get_24hformat_hour('9 PM')) 
+
+print(get_24hformat_hour('10 AM')) 
+print(get_24hformat_hour('11 AM'))
+print(get_24hformat_hour('10 PM')) 
+print(get_24hformat_hour('11 PM')) 
 #endregion bailam
