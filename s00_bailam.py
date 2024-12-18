@@ -42,27 +42,40 @@ get_24hformat_hour('11 PM')            | 23                     | 12
 
 #region bailam
 def get_24hformat_hour(hour_str):
-  thoigian, sangtoi = hour_str.split()
-  gio = int(thoigian.split(':')[0])
-  if sangtoi.upper() == 'PM' and gio != 12: 
-      gio += 12
-  elif sangtoi.upper() == 'AM' and gio == 12: 
-      gio = 0
-  return gio
 
-print(get_24hformat_hour('6am'))
-print(get_24hformat_hour('6am')) 
-print(get_24hformat_hour('7 am'))
-print(get_24hformat_hour('8AM') )
-print(get_24hformat_hour('9 AM'))  
+    if hour_str is None or len(hour_str) > 8:
+        return "khong dung format"
 
-print(get_24hformat_hour('6pm')) 
-print(get_24hformat_hour('7 pm'))
-print(get_24hformat_hour('8PM')) 
-print(get_24hformat_hour('9 PM')) 
+    sangtoi = hour_str[-2:].upper()
+    if (sangtoi != "AM" and sangtoi != "PM"):
+        sangtoi = 0
+    chuoithoigian = hour_str.replace(" ", "")
+    chuoithoigian = chuoithoigian.replace(":", "")
 
-print(get_24hformat_hour('10 AM')) 
-print(get_24hformat_hour('11 AM'))
-print(get_24hformat_hour('10 PM')) 
-print(get_24hformat_hour('11 PM')) 
+    if len(chuoithoigian) > 3:
+        gio = int(chuoithoigian[:2])
+    else:
+        gio = int(chuoithoigian[0])
+    #print("Gio la: ", gio)
+    if sangtoi == 'PM' and gio < 12:
+        gio += 12
+    elif sangtoi == 'AM' and gio == 12:
+        gio = 0
+    return str(gio)
+
+
+#print(get_24hformat_hour('10 PM'))
+#print(get_24hformat_hour('7 am'))
+#print(get_24hformat_hour('8AM') )
+#print(get_24hformat_hour('9 AM'))
+
+#print(get_24hformat_hour('6pm'))
+#print(get_24hformat_hour('7 pm'))
+#print(get_24hformat_hour('8PM'))
+#print(get_24hformat_hour('9 PM'))
+
+#print(get_24hformat_hour('10 AM'))
+#print(get_24hformat_hour('11 AM'))
+#print(get_24hformat_hour('10 PM'))
+#print(get_24hformat_hour('11 PM'))
 #endregion bailam
